@@ -1,0 +1,33 @@
+/* styles.css */
+
+/* Universal Selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Class Selector for Links */
+.link {
+    color: #1889cf;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.link:hover {
+    color: #1df7f7; /* Change to a different color on hover */
+}
+
+/* Email Link Styles */
+.email-link {
+    color: #1889cf; /* Default color */
+    text-decoration: none; /* No underline */
+}
+
+.email-link:hover {
+    color: #1df7f7; /* Color on hover */
+}
+
+.email-link:active {
+    color: #0e364f; /* Color when pressed */
+}

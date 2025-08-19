@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gray: #2c3e50;
+            --secondary-gray: #34495e;
+            --light-gray: #ecf0f1;
+            --dark-gray: #1a252f;
+            --accent-gray: #95a5a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-gray);
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-gray), var(--secondary-gray));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--light-gray) !important;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-gray), #ffffff);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23000" opacity="0.02"/><circle cx="10" cy="60" r="1" fill="%23000" opacity="0.02"/><circle cx="90" cy="40" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 8px solid var(--accent-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-gray);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gray), var(--accent-gray));
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .skill-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-gray);
+            margin-bottom: 1rem;
+        }
+
+        .project-card {
+            overflow: hidden;
+        }
+
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gray);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-gray);
+        }
+
+        .contact-form {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-gray), var(--primary-gray));
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-gray), var(--secondary-gray));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: var(--accent-gray);
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gray);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 2rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">John Doe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-3">Hi, I'm <span class="text-primary">John Doe</span></h1>
+                    <h3 class="h4 mb-4 text-muted">Aspiring Computer Engineer</h3>
+                    <p class="lead mb-4">Passionate about creating innovative solutions through technology. Currently pursuing my degree in Computer Engineering with a focus on software development and system design.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-custom">Get In Touch</a>
+                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#resumeModal">
+                            <i class="fas fa-download me-2"></i>Download Resume
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="/placeholder.svg?height=250&width=250" alt="John Doe" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <p class="lead">I'm a dedicated Computer Engineering student with a passion for problem-solving and innovation. My journey in technology began during high school, and since then, I've been continuously learning and growing in various areas of computer science.</p>
+                            <p>I enjoy working on both hardware and software projects, from embedded systems to web applications. My goal is to contribute to meaningful projects that make a positive impact on society through technology.</p>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><strong>Age:</strong> 21</li>
+                                        <li><strong>Location:</strong> Manila, Philippines</li>
+                                        <li><strong>Degree:</strong> BS Computer Engineering</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><strong>Email:</strong> john.doe@email.com</li>
+                                        <li><strong>Phone:</strong> +63 912 345 6789</li>
+                                        <li><strong>Languages:</strong> English, Filipino</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Educational Background</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bachelor of Science in Computer Engineering</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">University of the Philippines - Diliman</h6>
+                                    <p class="text-muted mb-2">2021 - Present</p>
+                                    <p class="card-text">Currently pursuing my degree with a focus on software engineering, computer systems, and digital signal processing. Maintaining a GPA of 3.7/4.0.</p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-secondary me-2">Data Structures</span>
+                                        <span class="badge bg-secondary me-2">Computer Architecture</span>
+                                        <span class="badge bg-secondary me-2">Digital Systems</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Senior High School - STEM Track</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Philippine Science High School</h6>
+                                    <p class="text-muted mb-2">2019 - 2021</p>
+                                    <p class="card-text">Graduated with High Honors. Specialized in Science, Technology, Engineering, and Mathematics with advanced courses in Physics and Computer Science.</p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-secondary me-2">Physics</span>
+                                        <span class="badge bg-secondary me-2">Advanced Mathematics</span>
+                                        <span class="badge bg-secondary me-2">Computer Programming</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seminars and Trainings -->
+    <section id="seminars" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Seminars & Trainings</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="accordion" id="seminarsAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#seminar1">
+                                    <i class="fas fa-certificate me-3 text-primary"></i>
+                                    <strong>Full Stack Web Development Bootcamp</strong>
+                                </button>
+                            </h2>
+                            <div id="seminar1" class="accordion-collapse collapse show" data-bs-parent="#seminarsAccordion">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p><strong>Provider:</strong> TechUp Philippines</p>
+                                            <p><strong>Duration:</strong> 3 months (June - August 2023)</p>
+                                            <p>Comprehensive training covering HTML, CSS, JavaScript, React, Node.js, and MongoDB. Built multiple projects including e-commerce platforms and social media applications.</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="badge bg-success">Completed</span>
+                                            <span class="badge bg-info ms-2">Certificate Earned</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminar2">
+                                    <i class="fas fa-robot me-3 text-primary"></i>
+                                    <strong>Introduction to Machine Learning</strong>
+                                </button>
+                            </h2>
+                            <div id="seminar2" class="accordion-collapse collapse" data-bs-parent="#seminarsAccordion">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p><strong>Provider:</strong> Coursera - Stanford University</p>
+                                            <p><strong>Duration:</strong> 11 weeks (March - May 2023)</p>
+                                            <p>Online course covering supervised and unsupervised learning, neural networks, and practical applications of machine learning algorithms using Python and scikit-learn.</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="badge bg-success">Completed</span>
+                                            <span class="badge bg-info ms-2">Certificate Earned</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seminar3">
+                                    <i class="fas fa-microchip me-3 text-primary"></i>
+                                    <strong>Embedded Systems Workshop</strong>
+                                </button>
+                            </h2>
+                            <div id="seminar3" class="accordion-collapse collapse" data-bs-parent="#seminarsAccordion">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p><strong>Provider:</strong> IEEE Philippines Section</p>
+                                            <p><strong>Duration:</strong> 2 days (January 2023)</p>
+                                            <p>Hands-on workshop on Arduino and Raspberry Pi programming, sensor integration, and IoT applications. Built a smart home monitoring system as the final project.</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="badge bg-success">Completed</span>
+                                            <span class="badge bg-info ms-2">Certificate Earned</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Skills & Technologies</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card skill-card h-100">
+                        <div class="card-body">
+                            <i class="fab fa-html5 skill-icon"></i>
+                            <h5 class="card-title">Frontend Development</h5>
+                            <p class="card-text">HTML5, CSS3, JavaScript, React, Bootstrap, Responsive Design</p>
+                            <div class="progress mb-2">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                            <small class="text-muted">85% Proficiency</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card skill-card h-100">
+                        <div class="card-body">
+                            <i class="fas fa-server skill-icon"></i>
+                            <h5 class="card-title">Backend Development</h5>
+                            <p class="card-text">Node.js, Python, Express.js, RESTful APIs, Database Design</p>
+                            <div class="progress mb-2">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                            <small class="text-muted">75% Proficiency</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card skill-card h-100">
+                        <div class="card-body">
+                            <i class="fas fa-database skill-icon"></i>
+                            <h5 class="card-title">Database Management</h5>
+                            <p class="card-text">MySQL, MongoDB, PostgreSQL, Database Optimization</p>
+                            <div class="progress mb-2">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                            <small class="text-muted">70% Proficiency</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card skill-card h-100">
+                        <div class="card-body">
+                            <i class="fas fa-code-branch skill-icon"></i>
+                            <h5 class="card-title">Version Control</h5>
+                            <p class="card-text">Git, GitHub, GitLab, Collaborative Development</p>
+                            <div class="progress mb-2">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                            <small class="text-muted">80% Proficiency</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Featured Projects</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card project-card h-100">
+                        <img src="/placeholder.svg?height=200&width=400" class="card-img-top project-img" alt="E-commerce Platform">
+                        <div class="card-body">
+                            <h5 class="card-title">E-commerce Platform</h5>
+                            <p class="card-text">A full-stack e-commerce solution built with React and Node.js. Features include user authentication, product catalog, shopping cart, and payment integration.</p>
+                            <div class="mb-3">
+                                <span class="badge bg-primary me-2">React</span>
+                                <span class="badge bg-primary me-2">Node.js</span>
+                                <span class="badge bg-primary me-2">MongoDB</span>
+                                <span class="badge bg-primary me-2">Stripe API</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                                <a href="#" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card project-card h-100">
+                        <img src="/placeholder.svg?height=200&width=400" class="card-img-top project-img" alt="Task Management App">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Management System</h5>
+                            <p class="card-text">A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
+                            <div class="mb-3">
+                                <span class="badge bg-success me-2">Vue.js</span>
+                                <span class="badge bg-success me-2">Express.js</span>
+                                <span class="badge bg-success me-2">Socket.io</span>
+                                <span class="badge bg-success me-2">PostgreSQL</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                                <a href="#" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project Carousel -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h4 class="text-center mb-4">Other Projects</h4>
+                    <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                                                <h5 class="card-title">Weather App</h5>
+                                                <p class="card-text">A responsive weather application using OpenWeatherMap API with location-based forecasts and interactive maps.</p>
+                                                <span class="badge bg-info me-2">JavaScript</span>
+                                                <span class="badge bg-info me-2">API Integration</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <i class="fas fa-gamepad fa-3x text-success mb-3"></i>
+                                                <h5 class="card-title">2D Puzzle Game</h5>
+                                                <p class="card-text">An interactive puzzle game built with HTML5 Canvas and JavaScript featuring multiple levels and scoring system.</p>
+                                                <span class="badge bg-warning me-2">HTML5 Canvas</span>
+                                                <span class="badge bg-warning me-2">Game Development</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+                                                <h5 class="card-title">Data Visualization Dashboard</h5>
+                                                <p class="card-text">Interactive dashboard for data analysis using D3.js with real-time data updates and multiple chart types.</p>
+                                                <span class="badge bg-danger me-2">D3.js</span>
+                                                <span class="badge bg-danger me-2">Data Analysis</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Contact Information</h4>
+                                <div class="contact-info">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-envelope fa-lg text-primary me-3"></i>
+                                        <div>
+                                            <strong>Email</strong><br>
+                                            <a href="mailto:john.doe@email.com">john.doe@email.com</a>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-phone fa-lg text-primary me-3"></i>
+                                        <div>
+                                            <strong>Phone</strong><br>
+                                            <a href="tel:+639123456789">+63 912 345 6789</a>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="fas fa-map-marker-alt fa-lg text-primary me-3"></i>
+                                        <div>
+                                            <strong>Location</strong><br>
+                                            Manila, Philippines
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="social-links mt-4">
+                                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Send Message</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subject" class="form-label">Subject</label>
+                                        <input type="text" class="form-control" id="subject" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-custom w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-2">&copy; 2024 John Doe. All rights reserved.</p>
+                    <p class="mb-0">Built with <i class="fas fa-heart text-danger"></i> using Bootstrap</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div class="modal fade" id="resumeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Resume Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-file-pdf fa-5x text-danger mb-3"></i>
+                        <h4>John Doe - Resume</h4>
+                        <p class="text-muted">Computer Engineering Student</p>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="#" class="btn btn-danger">
+                            <i class="fas fa-download me-2"></i>Download PDF
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary">
+                            <i class="fas fa-eye me-2"></i>Preview
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

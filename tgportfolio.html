@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathaniel Baccay - Developer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-red: #7f1d1d;
+            --light-gray: #f8f9fa;
+            --dark-gray: #1a1a1a;
+            --text-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .elegant-font {
+            font-family: 'Comfortaa', sans-serif;
+        }
+
+        /* Header */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 50%, #000000 100%);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 250px;
+            border-radius: 15px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .name-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .role-title {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .navbar-custom {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .navbar-custom .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: var(--primary-red) !important;
+        }
+
+        /* Sections */
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-red);
+        }
+
+        /* Cards */
+        .custom-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-red);
+        }
+
+        .tech-tag {
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--primary-red);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+            display: inline-block;
+        }
+
+        /* Contact Form */
+        .form-control {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: var(--text-light);
+        }
+
+        .form-control:focus {
+            background: rgba(26, 26, 26, 0.9);
+            border-color: var(--primary-red);
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+            color: var(--text-light);
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+            color: white;
+        }
+
+        /* Footer */
+        .footer-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 50%, #000000 100%);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name-title {
+                font-size: 2rem;
+            }
+            .role-title {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <div class="container header-content">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="profile-img mx-auto">
+                        <img src="assets/pfp.png" alt="Profile Picture" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-md-9 text-center text-md-start">
+                    <!-- Changed font from Creepster to elegant Playfair Display -->
+                    <h1 class="elegant-font name-title">Nathaniel Baccay</h1>
+                    <p class="role-title">Aspiring Computer Engineer</p>
+                    <p class="text-light mt-2">"If, lets say, you were to write a story with me as the main character, it would certainly be a tragedy"</p>
+                    <a href="profile.html" class="btn btn-custom mt-2">
+                        <i class="fas fa-camera me-2"></i>Update Profile Photo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#seminars">Seminars</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Me Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="elegant-font section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="custom-card p-4">
+                        <p class="lead text-center mb-4">
+                            Once an ordinary college student who loved literature, my journey into technology began after a life-changing transformation. Now I navigate between two worlds - the traditional and the digital.
+                        </p>
+                        <p>
+                            My passion for computer engineering stems from my desire to create solutions that bridge different worlds and help others adapt to change. I bring the same determination and resilience to coding that I use to navigate complex challenges in life.
+                        </p>
+                        <p>
+                            Specializing in full-stack development, I create applications that are clean, efficient, and built to last. My unique perspective allows me to approach problems from multiple angles and find innovative solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Added Educational Background section -->
+    <section id="education" class="section-padding bg-dark">
+        <div class="container">
+            <h2 class="elegant-font section-title">Educational Background</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="custom-card p-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h5 class="text-danger"><i class="fas fa-graduation-cap me-2"></i>Bachelor's Degree</h5>
+                                <p class="mb-1"><strong>Computer Engineering</strong></p>
+                                <p class="text-muted">Kamii University | 2020-2024</p>
+                                <p class="small">Specialized in software development, data structures, and system design.</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h5 class="text-danger"><i class="fas fa-certificate me-2"></i>Certifications</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Full Stack Web Development</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>JavaScript ES6+ Certification</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>React Developer Certification</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Added Seminars and Trainings section -->
+    <section id="seminars" class="section-padding">
+        <div class="container">
+            <h2 class="elegant-font section-title">Seminars & Trainings</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="custom-card p-4">
+                                <h5 class="text-danger mb-3"><i class="fas fa-code me-2"></i>Advanced JavaScript Workshop</h5>
+                                <p class="text-muted mb-2">Tech Academy | March 2024</p>
+                                <p class="small">Intensive 3-day workshop covering ES6+, async programming, and modern JavaScript frameworks.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-card p-4">
+                                <h5 class="text-danger mb-3"><i class="fas fa-database me-2"></i>Database Design Seminar</h5>
+                                <p class="text-muted mb-2">Data Institute | February 2024</p>
+                                <p class="small">Comprehensive training on database optimization, SQL advanced queries, and NoSQL databases.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-card p-4">
+                                <h5 class="text-danger mb-3"><i class="fas fa-cloud me-2"></i>Cloud Computing Training</h5>
+                                <p class="text-muted mb-2">AWS Academy | January 2024</p>
+                                <p class="small">Hands-on training with AWS services, deployment strategies, and cloud architecture.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-card p-4">
+                                <h5 class="text-danger mb-3"><i class="fas fa-mobile-alt me-2"></i>Mobile Development Bootcamp</h5>
+                                <p class="text-muted mb-2">Mobile Dev Institute | December 2023</p>
+                                <p class="small">Intensive bootcamp covering React Native and cross-platform mobile development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Skills section with Bootstrap cards and icons -->
+    <section id="skills" class="section-padding bg-dark">
+        <div class="container">
+            <h2 class="elegant-font section-title">Technical Skills</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="custom-card p-4 text-center">
+                        <div class="card-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h5 class="text-danger mb-3">Frontend</h5>
+                        <ul class="list-unstyled">
+                            <li>JavaScript (ES6+)</li>
+                            <li>React.js</li>
+                            <li>Vue.js</li>
+                            <li>HTML5 & CSS3</li>
+                            <li>Bootstrap</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="custom-card p-4 text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h5 class="text-danger mb-3">Backend</h5>
+                        <ul class="list-unstyled">
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>Python</li>
+                            <li>PHP</li>
+                            <li>RESTful APIs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="custom-card p-4 text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h5 class="text-danger mb-3">Database</h5>
+                        <ul class="list-unstyled">
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>Redis</li>
+                            <li>Firebase</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="custom-card p-4 text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h5 class="text-danger mb-3">Tools</h5>
+                        <ul class="list-unstyled">
+                            <li>Git & GitHub</li>
+                            <li>Docker</li>
+                            <li>AWS</li>
+                            <li>VS Code</li>
+                            <li>Postman</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <h2 class="elegant-font section-title">Featured Projects</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-danger mb-3">Anteiku Café Management System</h4>
+                            <p class="text-light mb-3">
+                                A comprehensive management system for café operations featuring inventory tracking, 
+                                staff scheduling, and customer management with real-time updates.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Socket.io</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                                <a href="#" class="btn btn-outline-light btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-danger mb-3">Digital Library Archive</h4>
+                            <p class="text-light mb-3">
+                                A modern digital library system with advanced search, reading progress tracking, 
+                                book recommendations, and community features for book discussions.
+                            </p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Redis</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                                <a href="#" class="btn btn-outline-light btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-dark">
+        <div class="container">
+            <h2 class="elegant-font section-title">Contact Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="custom-card p-4">
+                        <p class="text-center mb-4">
+                            Whether you're from the human world or the digital realm, I'm always open to new opportunities and collaborations.
+                        </p>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label text-danger">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label text-danger">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label text-danger">Subject</label>
+                                    <input type="text" class="form-control" id="subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label text-danger">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Tell me about your project or just say hello..." required></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-custom">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Footer with name and copyright -->
+    <footer class="footer-section">
+        <div class="container footer-content">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="mb-3">
+                        <a href="#" class="text-light me-3"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-light"><i class="fas fa-envelope fa-2x"></i></a>
+                    </div>
+                    <h5 class="elegant-font text-white mb-2">The one who left it all behind</h5>
+                    <p class="text-light mb-2">"If i said i just wanted a normal life, you would laugh, no?"</p>
+                    <p class="text-muted">© 2024 Tokyo ghouru. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
